@@ -1,5 +1,5 @@
 # Maxima Inequality Operator
-Maxima cannot deduce obvious facts which follor from the transitivity of the inequality operator from the assume database.
+Maxima cannot deduce obvious facts which follow from the transitivity of the inequality operator.
 
 (%i) assume(x > y)
 (%o)                              [x > y]
@@ -10,7 +10,7 @@ Maxima cannot deduce obvious facts which follor from the transitivity of the ine
 (%i) is(x^2 > y)
 (%o)                              unknown
 
-I have created the operators '>>' and '<<' to overcome this weakness.  They work by creating a digraph G whose vertices are the variables in the expressions of the assume database related to the arguement of the operator, with edges between elements if one is less than the other, followed by testing whether the first element is reachable from the second.
+I have created the operators '>>' and '<<' to overcome this weakness.  They work by creating a digraph G whose vertices are the variables in the expressions of the assume database related to the argument of the operator, with edges between elements if one is less than the other, followed by testing whether the first element is reachable from the second.
 
 (%i22) x^2 >> y
 (%o22)                               true
