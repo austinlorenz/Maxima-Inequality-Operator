@@ -23,16 +23,3 @@ preds(w) := sublist(facts(),lambda([z],~emptyp(∩[listofvars(w),listofvars(z)])
 transitive(EQ) := (flatten(map(args,preds(EQ))), G : make_graph(map(string,∪[args(EQ),flatten(map(args,preds(EQ)))]),lambda([w,z],w < z),directed=true), for v in vertices(G) do
                         for u in vertices(G) do 
                                 if eval_string(get_vertex_label(v,G)) < eval_string(get_vertex_label(u,G)) then add_edge([v,u],G),G);
-
-dg(g) := draw_graph(g,show_label=true);
-
-	assume(x > y);
-	assume(x > 1);
-	is(x^2 > x);
-	is(x^2 > y);
-
-	x^2 >> y;
-
-	dg(G);
-
-	facts();
