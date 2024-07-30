@@ -12,7 +12,7 @@ Maxima cannot deduce obvious facts which follow from the transitivity of the ine
 (%o)                              unknown
 ```
 
-I have created the operators '>>' and '<<' to overcome this weakness.  They work by creating a digraph G whose vertices are the variables in the expressions of the assume database related to the argument of the operator, with edges between elements if one is less than the other, followed by testing whether the first element is reachable from the second.
+I have created the operators '>>' and '<<' to overcome this weakness.  They work by creating a digraph G whose vertices are the arguments in the expressions of the assume database related to the arguments of the operator, with edges between vertices if one is less than the other, followed by testing whether the first element is reachable from the second.
 
 ```
 (%i22) x^2 >> y
