@@ -1,0 +1,38 @@
+load(graphs);
+
+prefix("~");
+"~"(x) := not(x);
+
+matchfix("∩[","]");
+∩[x,y] := intersection(setify(x),setify(y));
+
+matchfix("∪[","]");
+∪[x,y] := union(setify(x),setify(y));
+
+matchfix("eq[","]");
+eq[x,y] := is(equal(x,y));
+
+infix("<<",80,80);
+infix(">>",80,80);
+
+"<<"(a,b):= (transitive(b > a), ~emptyp(shortest_path(get_unique_vertex_by_label(string(a),G),get_unique_vertex_by_label(string(b),G),G)));
+">>"(a,b):= b << a;
+
+preds(w) := sublist(facts(),lambda([z],~emptyp(∩[listofvars(w),listofvars(z)]) and eq[op(w),op(z)]));
+
+transitive(EQ) := (flatten(map(args,preds(EQ))), G : make_graph(map(string,∪[args(EQ),flatten(map(args,preds(EQ)))]),lambda([w,z],w < z),directed=true), for v in vertices(G) do
+                        for u in vertices(G) do 
+                                if eval_string(get_vertex_label(v,G)) < eval_string(get_vertex_label(u,G)) then add_edge([v,u],G),G);
+
+dg(g) := draw_graph(g,show_label=true);
+
+	assume(x > y);
+	assume(x > 1);
+	is(x^2 > x);
+	is(x^2 > y);
+
+	x^2 >> y;
+
+	dg(G);
+
+	facts();
