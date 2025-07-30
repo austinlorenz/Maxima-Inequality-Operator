@@ -1,5 +1,7 @@
 load(graphs);
 
+#test
+
 prefix("~");
 "~"(x) := not(x);
 
